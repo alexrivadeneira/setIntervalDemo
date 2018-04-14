@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>setInterval Demo</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+function genRandomShape(){
+	let widths = ["30px", "50px", "100px", "120px", "200px", "500px"];
+	let heights = ["10px", "25px", "50px", "100px", "200px", "500px"];
+	let colors = ["red", "blue", "green", "orange", "yellow", "cyan", "red", "black"];
+	let borderRadius = ["100%", "50%", "0%"];
+	let newShape = document.createElement("div");
+	newShape.style.display = "block";
+	newShape.style.position = "absolute";
+	let randomX = Math.round(Math.random() * 800);
+	let randomY = Math.round(Math.random() * 1000);
+	newShape.style.top = randomX + "px";
+	newShape.style.left = randomY + "px";
+	newShape.style.width = widths[randomSelectFromArray(widths)];
+	newShape.style.height = heights[randomSelectFromArray(heights)];
+	newShape.style.backgroundColor = colors[randomSelectFromArray(colors)];
+	newShape.style.borderRadius = borderRadius[randomSelectFromArray(borderRadius)];
+	return newShape;
+}
+
+function addShapeToDOM(shape){
+	console.log("adding a shape");
+	document.body.appendChild(shape);
+}
+
+function addRandomShapeToDOM(){
+	addShapeToDOM(genRandomShape());
+}
+
+function randomSelectFromArray(arr){
+	return Math.round(Math.random() * (arr.length - 1));
+}
+
+setInterval(addRandomShapeToDOM, 100);
+
+
+</script>
+</body>
+</html>
